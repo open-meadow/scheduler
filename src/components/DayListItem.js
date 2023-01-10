@@ -10,6 +10,10 @@ export default function DayListItem(props) {
     "day-list__item--full" : (props.spots === 0)
   });
 
+  const formatSpots = () => {
+    return (props.spots === 0 || props.spots > 1) ? "spots remaining" : "spot remaining";
+  }
+
   return (
     <li
       onClick={() => {
@@ -18,7 +22,8 @@ export default function DayListItem(props) {
       className={dayListItemClass}
     >
       <h2>{props.name}</h2>
-      <h3>{props.spots} spots remaining</h3>
+      {props.spots && <h3>{props.spots} {formatSpots()}</h3>}
+      {!props.spots && <h3>no {formatSpots()}</h3>}
     </li>
   );
 }
