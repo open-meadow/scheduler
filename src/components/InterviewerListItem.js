@@ -4,12 +4,6 @@ import classNames from "classnames";
 import "components/InterviewerListItem.scss";
 
 export default function InterviewerListItem(props) {
-  // let interviewerListItemClass = classNames("interviewers__item", {
-  //   "interviewers__item-image": props.avatar,
-  //   "interviewers__item--selected": props.selected,
-  //   "interviewers__item--selected-image": (props.avatar && props.selected)
-  // });
-
   const interviewerListItemClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected
   });
