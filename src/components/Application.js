@@ -6,7 +6,8 @@ import "components/Application.scss";
 import Appointment from "./Appointment";
 import DayList from "./DayList";
 
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import useVisualMode from "hooks/useVisualMode";
 
 // const appointments = {
 //   1: {
