@@ -44,55 +44,55 @@ export default function Application(props) {
 
   // allow users to book interviews
   const bookInterview = (id, interview) => {
-
     console.log("interview", interview);
 
     // copy in state.appointments, but change the interview value to new one
     const appointment = {
       ...state.appointments[id],
-      interview: {...interview}
+      interview: { ...interview },
     };
 
     // copy in state.appointments, but change the appointment value to new one
     const appointments = {
       ...state.appointments,
-      [id]: appointment
-    }
-
-    // set state with new appointment
-    setState({
-      ...state,
-      appointments
-    });
+      [id]: appointment,
+    };
 
     console.log(appointment, appointments);
 
     // make put request through axios. return promise object back to appointment
-    return axios.put(`/api/appointments/${id}`, {'interview': interview})
+    return axios
+      .put(`/api/appointments/${id}`, { interview: interview })
+      .then(() => {
+        // set state with new appointment
+        setState({
+          ...state,
+          appointments,
+        });
+      });
   };
-  
+
   // interview cancel function
   const cancelInterview = (id, interview) => {
     console.log(id, interview);
     // copy in state.appointments, but change the interview value to new one
     const appointment = {
       ...state.appointments[id],
-      interview: {...interview}
+      interview: { ...interview },
     };
 
     // copy in state.appointments, but change the appointment value to new one
     const appointments = {
       ...state.appointments,
-      [id]: appointment
-    }
+      [id]: appointment,
+    };
 
-    return axios.delete(`/api/appointments/${id}`)
-    .then (() => {
+    return axios.delete(`/api/appointments/${id}`).then(() => {
       setState({
         ...state,
-        appointments
+        appointments,
       });
-    })
+    });
   };
 
   // create appointment form/ appointment details
@@ -109,8 +109,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewersList}
-        bookInterview = {bookInterview}
-        cancelInterview = {cancelInterview}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
