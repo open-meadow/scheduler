@@ -70,8 +70,31 @@ export default function Application(props) {
     // make put request through axios. return promise object back to appointment
     return axios.put(`/api/appointments/${id}`, {'interview': interview})
   };
-
   
+  // interview cancel function
+  const cancelInterview = (id, interview) => {
+    console.log(id, interview);
+    // copy in state.appointments, but change the interview value to new one
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+
+    // copy in state.appointments, but change the appointment value to new one
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    return axios.delete(`/api/appointments/${id}`)
+    .then (() => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+  };
+
   // create appointment form/ appointment details
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
@@ -87,6 +110,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewersList}
         bookInterview = {bookInterview}
+        cancelInterview = {cancelInterview}
       />
     );
   });
