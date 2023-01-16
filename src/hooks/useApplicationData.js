@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 export default function useApplicationData() {
   // set default state
   const [state, setState] = useState({
@@ -33,8 +32,6 @@ export default function useApplicationData() {
 
   // allow users to book interviews
   const bookInterview = (id, interview) => {
-    console.log("interview", interview);
-
     // copy in state.appointments, but change the interview value to new one
     const appointment = {
       ...state.appointments[id],
@@ -55,16 +52,26 @@ export default function useApplicationData() {
         setState({
           ...state,
           appointments,
+          days: updatedDays(appointments, id) 
         });
       });
   };
 
+  // update slots
+  const updatedDays = (appointments, appointmentId) => {
+    const apptDay = state.days.find(day => day.appointments.includes(appointmentId));
+    
+    const spots = apptDay.appointments.filter(id => appointments[id].interview === null).length;
+
+    return state.days.map(x => x.appointments.includes(appointmentId) ? {...x, spots} : x);
+  };
+
   // interview cancel function
-  const cancelInterview = (id, interview) => {
+  const cancelInterview = (id) => {
     // copy in state.appointments, but change the interview value to new one
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview },
+      interview: null,
     };
 
     // copy in state.appointments, but change the appointment value to new one
@@ -77,9 +84,10 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
+        days: updatedDays(appointments, id) 
       });
     });
   };
 
-  return { state, setDay, bookInterview, cancelInterview }
+  return { state, setDay, bookInterview, cancelInterview };
 }
