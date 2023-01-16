@@ -44,7 +44,24 @@ export default function Application(props) {
 
   // allow users to book interviews
   const bookInterview = (id, interview) => {
-    console.log(id, {id} , interview, {interview});
+    // copy in state.appointments, but change the interview value to new one
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+
+    // copy in state.appointments, but change the appointment value to new one
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    // set state with new appointment
+    setState({
+      ...state,
+      appointments
+    });
+
   };
 
   
