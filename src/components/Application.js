@@ -44,6 +44,9 @@ export default function Application(props) {
 
   // allow users to book interviews
   const bookInterview = (id, interview) => {
+
+    console.log("interview", interview);
+
     // copy in state.appointments, but change the interview value to new one
     const appointment = {
       ...state.appointments[id],
@@ -62,6 +65,14 @@ export default function Application(props) {
       appointments
     });
 
+    console.log(appointment, appointments);
+
+    // make put request through axios
+    axios.put(`/api/appointments/${id}`, {'interview': interview})
+    .then((res) => {
+      console.log("res:", res);
+    })
+    .catch((err) => console.log("Error:", err))
   };
 
   
