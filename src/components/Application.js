@@ -67,12 +67,8 @@ export default function Application(props) {
 
     console.log(appointment, appointments);
 
-    // make put request through axios
+    // make put request through axios. return promise object back to appointment
     return axios.put(`/api/appointments/${id}`, {'interview': interview})
-    .then((res) => {
-      console.log("res:", res);
-    })
-    .catch((err) => console.log("Error:", err))
   };
 
   
