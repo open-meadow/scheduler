@@ -3,11 +3,12 @@ import InterviewerListItem from "./InterviewerListItem";
 
 import "components/InterviewerList.scss";
 
+// create and export the list of available interviewers
 export default function InterviewerList(props) {
-  console.log("props", props);
   const InterviewerArr = props.interviewers.map((singleInterviewer) => {
     return (
       <InterviewerListItem
+        key={singleInterviewer.id}
         // id={singleInterviewer.id}
         name={singleInterviewer.name}
         avatar={singleInterviewer.avatar}
