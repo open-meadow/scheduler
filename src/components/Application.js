@@ -1,106 +1,24 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import "components/Application.scss";
 
 import Appointment from "./Appointment";
 import DayList from "./DayList";
-
+import useApplicationData from "hooks/useApplicationData";
 import {
   getAppointmentsForDay,
   getInterviewersForDay,
   getInterview,
 } from "helpers/selectors";
-import useVisualMode from "hooks/useVisualMode";
 
 export default function Application(props) {
-  // set default state
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {},
-  });
+  const { state, setDay, bookInterview, cancelInterview } = useApplicationData()
 
-  const setDay = (day) => setState({ ...state, day });
-
-  // Promise to retrieve days, appointments and interviewers
-  useEffect(() => {
-    Promise.all([
-      axios.get("/api/days"),
-      axios.get("/api/appointments"),
-      axios.get("/api/interviewers"),
-    ])
-      .then((all) => {
-        setState((prev) => ({
-          ...prev,
-          days: all[0].data,
-          appointments: all[1].data,
-          interviewers: all[2].data,
-        }));
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  // allow users to book interviews
-  const bookInterview = (id, interview) => {
-    console.log("interview", interview);
-
-    // copy in state.appointments, but change the interview value to new one
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-
-    // copy in state.appointments, but change the appointment value to new one
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    console.log(appointment, appointments);
-
-    // make put request through axios. return promise object back to appointment
-    return axios
-      .put(`/api/appointments/${id}`, { interview: interview })
-      .then(() => {
-        // set state with new appointment
-        setState({
-          ...state,
-          appointments,
-        });
-      });
-  };
-
-  // interview cancel function
-  const cancelInterview = (id, interview) => {
-    console.log(id, interview);
-    // copy in state.appointments, but change the interview value to new one
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-
-    // copy in state.appointments, but change the appointment value to new one
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    return axios.delete(`/api/appointments/${id}`).then(() => {
-      setState({
-        ...state,
-        appointments,
-      });
-    });
-  };
-
-  // create appointment form/ appointment details
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-
-  const schedule = dailyAppointments.map((appointment) => {
+  const interviewersList = getInterviewersForDay(state, state.day);
+  
+  // create appointment list
+  const schedule = getAppointmentsForDay(state, state.day).map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    const interviewersList = getInterviewersForDay(state, state.day);
 
     return (
       <Appointment
