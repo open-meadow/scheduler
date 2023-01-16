@@ -68,7 +68,7 @@ export default function Application(props) {
     console.log(appointment, appointments);
 
     // make put request through axios
-    axios.put(`/api/appointments/${id}`, {'interview': interview})
+    return axios.put(`/api/appointments/${id}`, {'interview': interview})
     .then((res) => {
       console.log("res:", res);
     })
