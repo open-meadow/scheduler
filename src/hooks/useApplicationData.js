@@ -72,18 +72,8 @@ export default function useApplicationData() {
       .catch((error) => console.log(error));
   }, []);
 
-  // const [webSocket, setWebSocket] = useState(null);
-
-  // const test = useCallback(() => {
-  //   console.log("state-test", state);
-  // }, [state]);
-
-  // useEffect(() => {
-  //   console.log("state useeffect", state);
-  // }, [state])
-
   // open web-socket
-  // useRef makes it so event only happens once. it can be references but not changed
+  // useRef makes it so event only happens once. it can be referenced but not changed
   const ws = useRef(null);
   useEffect(() => {
     ws.current = new WebSocket("ws://localhost:8001", "protocolOne");
@@ -93,8 +83,6 @@ export default function useApplicationData() {
   }, []);
 
   useEffect(() => {
-    // const ws = new WebSocket("ws://localhost:8001", "protocolOne");
-    // setWebSocket(ws);
     if (!ws.current) {
       return;
     } else {
