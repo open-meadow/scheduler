@@ -72,18 +72,8 @@ export default function useApplicationData() {
       .catch((error) => console.log(error));
   }, []);
 
-  // const [webSocket, setWebSocket] = useState(null);
-
-  // const test = useCallback(() => {
-  //   console.log("state-test", state);
-  // }, [state]);
-
-  // useEffect(() => {
-  //   console.log("state useeffect", state);
-  // }, [state])
-
   // open web-socket
-  // useRef makes it so event only happens once. it can be references but not changed
+  // useRef makes it so event only happens once. it can be references but not changed. otherwise, web socket keeps re-    opening
   const ws = useRef(null);
   useEffect(() => {
     ws.current = new WebSocket("ws://localhost:8001", "protocolOne");
@@ -93,8 +83,6 @@ export default function useApplicationData() {
   }, []);
 
   useEffect(() => {
-    // const ws = new WebSocket("ws://localhost:8001", "protocolOne");
-    // setWebSocket(ws);
     if (!ws.current) {
       return;
     } else {
@@ -103,27 +91,12 @@ export default function useApplicationData() {
 
         // send 'ping' on the server
         ws.current.send("ping");
-
-        // const message = {
-        //   type: "NOTIFICATION",
-        //   content: "The record was created",
-        //   severity: "LOW",
-        //   timestamp: 387250200000
-        // };
       };
 
       ws.current.onmessage = (event) => {
-        // test();
         const message = JSON.parse(event.data);
-        // console.log("Message Recieved:", message);
-        console.log("state:", state);
-        // console.log("event data type", message.type);
-        // console.log("event data type", message.id);
-        // console.log("event data type", message.interview);
 
         if (message.type === "SET_INTERVIEW") {
-          console.log("now");
-
           const appointment = {
             ...state.appointments[message.id],
             interview: message.interview,
