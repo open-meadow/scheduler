@@ -94,10 +94,13 @@ export default function useApplicationData() {
 
   // update slots
   const updatedDays = (appointments, appointmentId) => {
+    // check which day has correct appointment
     const apptDay = state.days.find(day => day.appointments.includes(appointmentId));
     
+    // calculate new spots value
     const spots = apptDay.appointments.filter(id => appointments[id].interview === null).length;
 
+    // {...x, spots} updates x.spots. else it just returns x
     return state.days.map(x => x.appointments.includes(appointmentId) ? {...x, spots} : x);
   };
 
