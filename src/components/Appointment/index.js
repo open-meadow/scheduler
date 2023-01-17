@@ -70,6 +70,9 @@ export default function Appointment(props) {
       });
   };
 
+  console.log("props", props);
+  console.log("mode", mode);
+
   return (
     <article className="appointment">
       <Header time={props.time} />
