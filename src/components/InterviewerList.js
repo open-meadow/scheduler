@@ -1,13 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import InterviewerListItem from "./InterviewerListItem";
-import PropTypes from 'prop-types';
 
 import "components/InterviewerList.scss";
-
-InterviewerList.propTypes = {
-  interviewers: PropTypes.array.isRequired
-};
 
 // create and export the list of available interviewers
 export default function InterviewerList(props) {
