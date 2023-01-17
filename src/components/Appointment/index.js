@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 
 import "components/Appointment/styles.scss";
 
@@ -26,6 +26,17 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  // change interview
+  useEffect(() => {
+    if (props.interview && mode === EMPTY) {
+     transition(SHOW);
+    }
+    if (props.interview === null && mode === SHOW) {
+     transition(EMPTY);
+    }
+   }, [props.interview, transition, mode]);
+   
 
   // function set interview object with correct data
   const save = (name, interviewer) => {
@@ -93,7 +104,7 @@ export default function Appointment(props) {
         else transition(EMPTY);
         }} />}
       {mode === ERROR_DELETE && <Error message="Error while deleting." onClose={() => transition(SHOW)} />}
-      {mode === SHOW && (
+      {mode === SHOW && props.interview && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
