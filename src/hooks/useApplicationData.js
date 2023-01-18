@@ -6,11 +6,14 @@ import React, {
   useRef,
 } from "react";
 import axios from "axios";
-import { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW, reducer } from "reducers/application";
+import {
+  SET_DAY,
+  SET_APPLICATION_DATA,
+  SET_INTERVIEW,
+  reducer,
+} from "reducers/application";
 
 export default function useApplicationData() {
-  
-
   // set default state
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
@@ -64,7 +67,6 @@ export default function useApplicationData() {
         const message = JSON.parse(event.data);
 
         if (message.type === "SET_INTERVIEW") {
-
           const appointment = {
             ...state.appointments[message.id],
             interview: message.interview,
