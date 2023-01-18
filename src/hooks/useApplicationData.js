@@ -91,26 +91,12 @@ export default function useApplicationData() {
 
         // send 'ping' on the server
         ws.current.send("ping");
-
-        // const message = {
-        //   type: "NOTIFICATION",
-        //   content: "The record was created",
-        //   severity: "LOW",
-        //   timestamp: 387250200000
-        // };
       };
 
       ws.current.onmessage = (event) => {
-        // test();
         const message = JSON.parse(event.data);
-        // console.log("Message Recieved:", message);
-        console.log("state:", state);
-        // console.log("event data type", message.type);
-        // console.log("event data type", message.id);
-        // console.log("event data type", message.interview);
 
         if (message.type === "SET_INTERVIEW") {
-          console.log("now");
 
           const appointment = {
             ...state.appointments[message.id],
@@ -163,9 +149,6 @@ export default function useApplicationData() {
 
   // update slots
   const updatedDays = (appointments, appointmentId) => {
-    console.log("state-updays", state);
-    console.log("appt-id: ", appointmentId);
-
     // check which day has correct appointment
     const apptDay = state.days.find((day) =>
       day.appointments.includes(appointmentId)
