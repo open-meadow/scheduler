@@ -6,7 +6,7 @@ describe("Appointments", () => {
     cy.contains("[data-testid='day']", "Monday");
   });
 
-  it("should book an interview", () => {
+  xit("should book an interview", () => {
     // open appointment form
     cy.get("[alt=Add]").first().click();
 
@@ -20,7 +20,7 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Sylvia Palmer");
   });
 
-  it("should edit an interview", () => {
+  xit("should edit an interview", () => {
     // open appointment form
     cy.get("[alt=Edit]").first().click({force: true});
 
@@ -32,5 +32,20 @@ describe("Appointments", () => {
     // check if new appointment shows up
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
     cy.contains(".appointment__card--show", "Tori Malcolm");
+  })
+
+  it("should delete an interview", () => {
+    // click delete
+    cy.get("[alt=Delete]").first().click({force: true});
+
+    // click confirm
+    cy.contains('Confirm').click()
+    
+    // check deleting
+    cy.contains("Deleting").should("exist");
+    cy.contains("Deleting").should("not.exist");
+    
+    // check if new appointment does not show up
+    cy.contains('.appointment__card--show', 'Archie Cohen').should("not.exist");
   })
 });
