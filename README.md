@@ -17,7 +17,21 @@ The webpage was created using Node and React and tested with Jest and Cypress.
 Simply use the link given above.
 
 ## Screenshots
+> Displaying Appointments
 
+![screenshot](https://github.com/open-meadow/scheduler/blob/d89e4d7a41476328005519e4c462f2fbd1e82af5/docs/1-displaying_appointments.png)
+
+> Adding New Appointments
+
+![screenshot](https://github.com/open-meadow/scheduler/blob/d89e4d7a41476328005519e4c462f2fbd1e82af5/docs/2-adding_new_appointments.png)
+
+> Deleting Appointments
+
+![screenshot](https://github.com/open-meadow/scheduler/blob/d89e4d7a41476328005519e4c462f2fbd1e82af5/docs/3-confirm_delete_appointment.png)
+
+> Mobile View
+
+![screenshot](https://github.com/open-meadow/scheduler/blob/d89e4d7a41476328005519e4c462f2fbd1e82af5/docs/4-mobile_view.png)
 
 ## Dependencies
 - React
@@ -26,5 +40,4 @@ Simply use the link given above.
 -  Storybook, Webpack Dev Server, Jest, Testing Library
 
 <br></br>
-
 [^1]: Note to dear friends and family who may be reading this. As the data persists across webpages and devices, you may be tempted to type things such as "[The creator of this website] is an idiot" or "[The creator of this website] is stupid" or "When are you planning on getting a girlfriend?". Please refrain from doing so.
