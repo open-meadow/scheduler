@@ -1,25 +1,30 @@
 # Interview Scheduler
 
+## Website 
+
 https://classy-dieffenbachia-f3049b.netlify.app/
 
-## Setup
+## Summary
 
-Install dependencies with `npm install`.
+This is an Interview Scheduling App. It allows users to easily create new appointments, by typing in a name, and selecting an interviewer. The information is stored on a database. Therefore, it is not lost upon refresh or closing the browser page. Furthermore, data is stored across devices. [^1]
 
-## Running Webpack Development Server
+It is a responsive app that shows a different layout for computer and mobile devices. It makes use of AJAX requests so that the data gets immediately updated.
 
-```sh
-npm start
-```
+The webpage was created using Node and React and tested with Jest and Cypress.
 
-## Running Jest Test Framework
+## Getting Started
 
-```sh
-npm test
-```
+Simply use the link given above.
 
-## Running Storybook Visual Testbed
+## Screenshots
 
-```sh
-npm run storybook
-```
+
+## Dependencies
+- React
+- Webpack, Babel
+-  Axios, WebSockets
+-  Storybook, Webpack Dev Server, Jest, Testing Library
+
+<br></br>
+
+[^1]: Note to dear friends and family who may be reading this. As the data persists across webpages and devices, you may be tempted to type things such as "[The creator of this website] is an idiot" or "[The creator of this website] is stupid" or "When are you planning on getting a girlfriend?". Please refrain from doing so.

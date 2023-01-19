@@ -36,7 +36,7 @@ export default function useApplicationData() {
       .catch((error) => console.log(error));
   }, []);
 
-  // update slots
+  // update slots - useCallback makes it so it can be used in useEffect without causing linting errors
   const updatedDays = useCallback((appointments, appointmentId) => {
     // check which day has correct appointment
     const apptDay = state.days.find((day) =>
@@ -58,7 +58,7 @@ export default function useApplicationData() {
   // useRef makes it so event only happens once. it can be referenced but not changed
   const ws = useRef(null);
   useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8001", "protocolOne");
+    ws.current = new WebSocket("ws://scheduler-api-production-3e53.up.railway", "protocolOne");
     return () => {
       ws.current.close();
     };

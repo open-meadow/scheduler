@@ -48,15 +48,10 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             data-testid="student-name-input"
-            /*
-          This must be a controlled component
-          your code goes here
-        */
           />
           <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList
-          /* your code goes here */
           value={interviewer}
           interviewers={props.interviewers}
           onChange={setInterviewer}
