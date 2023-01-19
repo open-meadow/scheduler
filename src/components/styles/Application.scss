@@ -7,9 +7,29 @@
   flex-direction: column;
   min-width: 18rem;
   padding: $spacing 0;
+  position: sticky;
+  top: 0em;
+  max-height: 100vh;
 
   &--centered {
     align-self: center;
+  }
+
+  &__credits {
+    color: floralwhite;
+    text-align: center;
+    padding-top: 1em;
+
+    &__link {
+      color: floralwhite;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    &__link:hover {
+      color: floralwhite;
+      text-decoration: underline;
+    }
   }
 
   &__separator {
@@ -25,6 +45,10 @@
 
   &__lhl {
     margin-top: 2rem;
+  }
+
+  @media only screen and (max-width: 960px) {
+    position: relative;
   }
 }
 

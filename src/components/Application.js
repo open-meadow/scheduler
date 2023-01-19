@@ -54,6 +54,15 @@ export default function Application(props) {
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />
+        <div className="sidebar__credits">
+          Made By{" "}
+          <a
+            className="sidebar__credits__link"
+            href="https://github.com/open-meadow/scheduler"
+          >
+            Rohan Varughese
+          </a>
+        </div>
       </section>
       <section className="schedule">
         {schedule}
