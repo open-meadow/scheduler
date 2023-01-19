@@ -2,7 +2,7 @@
 
 ## Website 
 
-https://classy-dieffenbachia-f3049b.netlify.app/
+https://scheduler-rv.netlify.app/
 
 ## Summary
 
