@@ -58,7 +58,7 @@ export default function useApplicationData() {
   // useRef makes it so event only happens once. it can be referenced but not changed
   const ws = useRef(null);
   useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8001", "protocolOne");
+    ws.current = new WebSocket("wss://scheduler-api-production-3e53.up.railway.app/", "protocolOne");
     return () => {
       ws.current.close();
     };
