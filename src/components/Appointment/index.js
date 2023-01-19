@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 
 import "components/Appointment/styles.scss";
 
@@ -23,7 +23,7 @@ export default function Appointment(props) {
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
 
-  const { mode, transition, back } = useVisualMode(
+  const { mode, transition } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 

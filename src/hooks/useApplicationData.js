@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useReducer,
-  useCallback,
-  useRef,
-} from "react";
+import { useCallback, useEffect, useReducer, useRef } from "react";
 import axios from "axios";
 import {
   SET_DAY,
@@ -41,6 +35,24 @@ export default function useApplicationData() {
       })
       .catch((error) => console.log(error));
   }, []);
+
+  // update slots
+  const updatedDays = useCallback((appointments, appointmentId) => {
+    // check which day has correct appointment
+    const apptDay = state.days.find((day) =>
+      day.appointments.includes(appointmentId)
+    );
+
+    // calculate new spots value
+    const spots = apptDay.appointments.filter(
+      (id) => appointments[id].interview === null
+    ).length;
+
+    // {...x, spots} updates x.spots. else it just returns x
+    return state.days.map((x) =>
+      x.appointments.includes(appointmentId) ? { ...x, spots } : x
+    );
+  }, [state.days]);
 
   // open web-socket
   // useRef makes it so event only happens once. it can be referenced but not changed
@@ -87,7 +99,7 @@ export default function useApplicationData() {
         }
       };
     }
-  }, [state]);
+  }, [state, updatedDays]);
 
   // allow users to book interviews
   const bookInterview = (id, interview) => {
@@ -114,24 +126,6 @@ export default function useApplicationData() {
           days: updatedDays(appointments, id),
         });
       });
-  };
-
-  // update slots
-  const updatedDays = (appointments, appointmentId) => {
-    // check which day has correct appointment
-    const apptDay = state.days.find((day) =>
-      day.appointments.includes(appointmentId)
-    );
-
-    // calculate new spots value
-    const spots = apptDay.appointments.filter(
-      (id) => appointments[id].interview === null
-    ).length;
-
-    // {...x, spots} updates x.spots. else it just returns x
-    return state.days.map((x) =>
-      x.appointments.includes(appointmentId) ? { ...x, spots } : x
-    );
   };
 
   // interview cancel function
