@@ -36,8 +36,8 @@ Simply use the link given above.
 ## Dependencies
 - React
 - Webpack, Babel
--  Axios, WebSockets
--  Storybook, Webpack Dev Server, Jest, Testing Library
-
+- Axios, WebSockets
+- Storybook, Webpack Dev Server, Jest, Testing Library
+- Node, Express
 <br></br>
 [^1]: Note to dear friends and family who may be reading this. As the data persists across webpages and devices, you may be tempted to type things such as "[The creator of this website] is an idiot" or "[The creator of this website] is stupid" or "When are you planning on getting a girlfriend?". Please refrain from doing so.
