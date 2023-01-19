@@ -16,6 +16,8 @@ The webpage was created using Node and React and tested with Jest and Cypress.
 
 Simply use the link given above.
 
+To run on a local machine, clone this link and start a server: https://github.com/open-meadow/scheduler-api
+
 ## Screenshots
 > Displaying Appointments
 
