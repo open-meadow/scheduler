@@ -1,7 +1,7 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
 
-import "components/InterviewerList.scss";
+import "components/styles/InterviewerList.scss";
 
 // create and export the list of available interviewers
 export default function InterviewerList(props) {

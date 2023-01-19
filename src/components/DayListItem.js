@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import "components/DayListItem.scss";
+import "components/styles/DayListItem.scss";
 
 export default function DayListItem(props) {
   // find appropriate dayListItem class
