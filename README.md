@@ -16,7 +16,26 @@ The webpage was created using Node and React and tested with Jest and Cypress.
 
 Simply use the link given above.
 
-To run on a local machine, clone this link and start a server: https://github.com/open-meadow/scheduler-api
+### If the deployment goes down and you have to run it locally
+- You need to have Node JS installed on your computer. You can download it at (https://nodejs.org/en/).
+- You will also need to have Postgre SQL installed. You can download it at (https://www.postgresql.org/).
+- Once you have Node JS, go to your desired folder, open the terminal or command prompt, and type git@github.com:open-meadow/scheduler.git, if you have git. Alternatively, you can download the ZIP file and extract it to your desired folder.
+- In a similar manner, you will have to download the server: https://github.com/open-meadow/scheduler-api. Put this code in the same folder as above.
+
+- Navigate to the folder containing the scheduler-api code.
+- Copy the file <code>env.example</code>. Paste it in the same folder, and rename it <code>env.development</code>. Open env.development in Notepad or a text editor, and replace the given text with the details in the README.
+- Open your terminal or command prompt in the same folder ( Windows users, click on the empty space on the box beside the search bar and type 'cmd').
+- Type <code>psql -U development</code> and click enter. Upon the password prompt, type 'development'. Once it loads, type the following:-
+  <code>\i src/db/schema/create.sql</code>
+  <code>\i src/db/schema/development.sql</code>
+- Exit by typing <code>\q</code> then hitting Enter. Alternativelty, type Ctrl+C 
+- Type npm install and click Enter. Windows users may need to run cmd as administrator.
+- Once installed, type npm start and click Enter.
+- Go to your favourite web browser, and type localhost:8001/api/debug/reset in the address bar. Hit Enter.
+
+- Navigate to the folder containing the scheduler code.
+- Open the terminal/command prompt. Type npm install.
+- Type npm start. Click enter. This should start the client
 
 ## Screenshots
 > Displaying Appointments
